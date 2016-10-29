@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url.description)
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        
+        // load twitter client
+        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string:"https://api.twitter.com")!, consumerKey: "RiicizFj4o1dmSgPgldMzi3am", consumerSecret: "h8WkmYl7xbTCT7PV5HlO6r8VeuDkmzKScMFBqlFbxyzt21vmdp")
+        
+        // get access token
+        // can make api requests with access tokens
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { ( accessToken: BDBOAuth1Credential?) in
+            print("I got the acces token!")
+            
+            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+                
+                print("account: \(response)")
+                let user = response as! NSDictionary
+                print("name: \(user["name"])")
+                
+                }, failure: { (task: URLSessionDataTask?, error:Error) in
+                    print("failed verification")
+            })
+            
+            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+                
+                let tweets = response as! [NSDictionary]
+                
+                for tweet in tweets{
+                    print("\(tweet["text"]!)")
+                }
+                
+                }, failure: { (task: URLSessionDataTask?, error:Error) in
+                    print("failed home timeline")
+            })
+            
+            }, failure: { (error: Error?) in
+            print("error: \(error?.localizedDescription)")
+            }
+        )
+        // get access token
+        
+        return true;
     }
 
 
