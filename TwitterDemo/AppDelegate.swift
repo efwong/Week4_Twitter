@@ -56,9 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
                 
-                print("account: \(response)")
-                let user = response as! NSDictionary
-                print("name: \(user["name"])")
+                if let userDictionary = response as? NSDictionary{
+                    let user = User(dictionary: userDictionary)
+                    
+                   // print("user: \(user)")
+                    print("name: \(user.name)")
+                    print("screen_name: \(user.screenName)")
+                    print("profile_url: \(user.profileURL)")
+                }
                 
                 }, failure: { (task: URLSessionDataTask?, error:Error) in
                     print("failed verification")
@@ -66,12 +71,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
                 
-                let tweets = response as! [NSDictionary]
-                
-                for tweet in tweets{
-                    print("\(tweet["text"]!)")
+                if let dictionaries = response as? [NSDictionary]{
+                    
+                    let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+                    
+                    for tweet in tweets{
+                        print("\(tweet.text)")
+                    }
                 }
-                
                 }, failure: { (task: URLSessionDataTask?, error:Error) in
                     print("failed home timeline")
             })
