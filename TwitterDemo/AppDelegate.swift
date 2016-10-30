@@ -44,27 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print(url.description)
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        
         // load twitter client
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string:"https://api.twitter.com")!, consumerKey: "RiicizFj4o1dmSgPgldMzi3am", consumerSecret: "h8WkmYl7xbTCT7PV5HlO6r8VeuDkmzKScMFBqlFbxyzt21vmdp")
+        let client = TwitterClient.sharedInstance
         
-        // get access token
-        // can make api requests with access tokens
-        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { ( accessToken: BDBOAuth1Credential?) in
-            print("I got the acces token!")
-            
-            let client = TwitterClient.sharedInstance
-    
-            client?.currentAccount()
-            
-            client?.homeTimeLine()
-            
-            }, failure: { (error: Error?) in
-            print("error: \(error?.localizedDescription)")
-            }
-        )
-        // get access token
+        // take care of url redirected to this app
+        client?.handleOpenUrl(url: url)
         
         return true;
     }
