@@ -17,6 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // go straight to tweets if not nil (skip login & authentication with Twitter)
+        if User.currentUser != nil{
+            print("There is a current user")
+            
+            // set root view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // from Main.storyboard
+            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            window?.rootViewController = vc
+        }else{
+            print("There is no current user")
+        }
+        
+        // from TwitterClient Logout
+        NotificationCenter.default.addObserver(forName: User.userDidLogoutNotification, object: nil, queue: OperationQueue.main) { (notification: Notification) in
+            
+            // callback below will fire when logging out
+            
+            // reinitialize storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // from Main.storyboard
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        }
+        
         return true
     }
 
