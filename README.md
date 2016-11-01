@@ -40,6 +40,11 @@ Here's a walkthrough of implemented user stories:
 
 I'm going to add the gif later because I made to many requests to Twitter and they're currently blocking my requests.
 
+
+[TwitterGif](http://i.imgur.com/z47FALl.gif)
+
+![Video Walkthrough](twitter.gif)
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
