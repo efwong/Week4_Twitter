@@ -51,6 +51,58 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    // post retweet
+    func retweet(idStr: String, success: @escaping () -> () , failure: @escaping (Error) -> ()) {
+        let relativeURL:String = "1.1/statuses/retweet/\(idStr).json"
+        let parameters: [String : AnyObject] = ["id": idStr as AnyObject]
+        
+        post(relativeURL, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+                success()
+//            if let userDictionary = response as? NSDictionary{
+//                success(user)
+//            }
+            
+            }, failure: { (task: URLSessionDataTask?, error:Error) in
+                failure(error)
+                print("failed retweet")
+        })
+    }
+    
+    // post Tweet
+    // can be used to reply to another Tweet
+    func statusUpdate(status: String, replyStatusID: String? = nil, success: @escaping () -> () , failure: @escaping (Error) -> ()) {
+        let relativeURL:String = "1.1/statuses/update.json"
+        var parameters: [String : AnyObject] = ["status": status as AnyObject]
+        
+        if let replyStatusID = replyStatusID{
+            parameters["in_reply_to_status_id"] = (replyStatusID as AnyObject)
+        }
+        
+        post(relativeURL, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+            
+            }, failure: { (task: URLSessionDataTask?, error:Error) in
+                failure(error)
+                print("failed status update")
+        })
+    }
+    
+    
+    func favorite(idStr: String, success: @escaping () -> () , failure: @escaping (Error) -> ()) {
+        let relativeURL:String = "https://api.twitter.com/1.1/favorites/create.json"
+        let parameters = ["id": idStr]
+        
+        post(relativeURL, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+            //            if let userDictionary = response as? NSDictionary{
+            //                success(user)
+            //            }
+            
+            }, failure: { (task: URLSessionDataTask?, error:Error) in
+                failure(error)
+                print("failed retweet")
+        })
+    }
     
     // Run this to login
     func login(success: @escaping () -> (), failure: @escaping (Error) -> () ){

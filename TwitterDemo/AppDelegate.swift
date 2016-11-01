@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             window?.rootViewController = vc
         }else{
+            // proceed to login view
             print("There is no current user")
         }
         

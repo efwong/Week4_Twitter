@@ -38,8 +38,10 @@ class User: NSObject {
                 let defaults = UserDefaults.standard
                 let userData = defaults.object(forKey: "currentUserData") as? Data
                 if let userData = userData {
-                    let localDictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary
-                    _currentUser = User(dictionary: localDictionary)
+                    let localDictionary = try? JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary
+                    if let localDictionary = localDictionary{
+                        _currentUser = User(dictionary: localDictionary)
+                    }
                 }
             }
             return _currentUser
@@ -54,7 +56,7 @@ class User: NSObject {
                 defaults.set(data, forKey: "currentUserData")
                 
             }else{
-                defaults.set(nil, forKey: "currentUserData")
+                defaults.removeObject(forKey: "currentUserData")
             }
             
             //defaults.synchronize() // save to disk
