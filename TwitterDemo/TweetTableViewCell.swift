@@ -17,16 +17,17 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var replyImage: UIImageView!
-    
-    @IBOutlet weak var retweetImage: UIImageView!
-    @IBOutlet weak var favoriteImage: UIImageView!
+
+    @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var favoritesLabel: UILabel!
     
     var tweet: Tweet!{
         didSet{
             self.nameLabel.text = tweet.user?.name
             self.screenNameLabel.text = "@\((tweet.user?.screenName)!)"
             self.descriptionLabel.text = tweet.text
+            self.retweetLabel.text = "\(tweet.retweetCount)"
+            self.favoritesLabel.text = "\(tweet.favoriteCount)"
             
             // load image view
             if let userImageUrl = tweet.user?.profileURL{
@@ -46,18 +47,6 @@ class TweetTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
-        // Add tap gesture recognizer to reply, retweet, favorite
-        
-        let retweetTapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(onRetweetTapped(gestureRecognizer:)))
-        self.retweetImage.addGestureRecognizer(retweetTapGestureRecognizer)
-        
-        let replyTapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(onReplyTapped(gestureRecognizer:)))
-        self.replyImage.addGestureRecognizer(replyTapGestureRecognizer)
-        
-        let favoriteTapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(onFavoriteTapped(gestureRecognizer:)))
-        self.favoriteImage.addGestureRecognizer(favoriteTapGestureRecognizer)
     }
     
     func onRetweetTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -73,27 +62,6 @@ class TweetTableViewCell: UITableViewCell {
             })
         }
 
-    }
-    
-    func onReplyTapped(gestureRecognizer: UITapGestureRecognizer){
-         print(21)
-    }
-    
-    func onFavoriteTapped(gestureRecognizer: UITapGestureRecognizer){
-         TwitterClient.sharedInstance?.favorite(idStr: tweet.idStr, success: { 
-            () in
-                print(1)
-            }, failure: {
-                (error: Error) in
-                print("\(error.localizedDescription)")
-         })
-    }
-
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

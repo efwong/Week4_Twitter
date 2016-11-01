@@ -35,6 +35,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,8 +79,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
+    // MARK: CreateTweetDelegate
+    // fire when saving tweet
     func createTweet() {
         // reload tweets
+        getTweets(){}
+    }
+    
+    // Unwind segue to reload table view
+    @IBAction func unwindToTweetsView(segue: UIStoryboardSegue){
         getTweets(){}
     }
     

@@ -23,7 +23,9 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var favoriteImage: UIImageView!
     
+    @IBOutlet weak var retweetClosedImage: UIImageView!
     
+    @IBOutlet weak var favoriteClosedImage: UIImageView!
     
     var tweet: Tweet?
     
@@ -66,6 +68,17 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
             dateFormatter.dateFormat="MM-dd-yyyy"
             self.dateLabel.text = dateFormatter.string(from: dateObj)
         }
+        
+        if let isRetweeted = self.tweet?.isRetweeted{
+            if isRetweeted{
+                self.toggleRetweetedIcon(false)
+            }
+        }
+        if let isFavorited = self.tweet?.isFavorited{
+            if isFavorited{
+                self.toggleFavoriteIcon(false)
+            }
+        }
     }
 
     
@@ -73,7 +86,8 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
         if let idStr = tweet?.idStr{
             TwitterClient.sharedInstance?.retweet(idStr: idStr, success: {
                 () in
-                print(123)
+                self.toggleRetweetedIcon(false)
+                
                 }, failure: {
                     (error: Error) in
                     print("\(error.localizedDescription)")
@@ -89,11 +103,35 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
         if let idStr = tweet?.idStr{
             TwitterClient.sharedInstance?.favorite(idStr: idStr, success: {
                 () in
-                print(1)
+                self.toggleFavoriteIcon(false)
                 }, failure: {
                     (error: Error) in
                     print("\(error.localizedDescription)")
             })
+        }
+    }
+    
+    // if on == true -> show regular retweet icon
+    // if on == false -> show closed retweet icon
+    func toggleRetweetedIcon(_ on: Bool){
+        if on{
+            self.retweetClosedImage.isHidden = true
+            self.retweetImage.isHidden = false
+        }else{
+            self.retweetClosedImage.isHidden = false
+            self.retweetImage.isHidden = true
+        }
+    }
+    
+    // if on == true -> show regular favorite icon
+    // if on == false -> show closed favorite icon
+    func toggleFavoriteIcon(_ on: Bool){
+        if on{
+            self.favoriteClosedImage.isHidden = true
+            self.favoriteImage.isHidden = false
+        }else{
+            self.favoriteClosedImage.isHidden = false
+            self.favoriteImage.isHidden = true
         }
     }
     
@@ -112,7 +150,7 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
                 if let createTweetModal = navigationCtrl.topViewController as? CreateTweetViewController{
                     createTweetModal.delegate = self
                     createTweetModal.replyTweet = self.tweet
-                    createTweetModal.displayUser = self.tweet?.user
+                    createTweetModal.displayUser = User.currentUser
                 }
             }
         }
