@@ -58,16 +58,20 @@ class HamburgerViewController: UIViewController {
             // tell controller it did move
             contentViewController.didMove(toParentViewController: self)
             
-            UIView.animate(withDuration: 0.3) { 
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.leftMarginConstraint.constant = 0
                 self.view.layoutIfNeeded()
-            }
+                }, completion: nil)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // create menu first before setting self.menuViewController to prevent crash
+        let localMenuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        localMenuViewController.hamburgerViewController = self
+        self.menuViewController = localMenuViewController
+        
         // Do any additional setup after loading the view.
     }
 
