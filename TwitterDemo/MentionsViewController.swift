@@ -34,7 +34,7 @@ class MentionsViewController: UIViewController, TweetsListingsDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // callback to fetch mentions timeline tweets
     func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->()){
         TwitterClient.sharedInstance?.mentionsTimeLine(success: { (tweets: [Tweet]) -> ()in
             success(tweets)

@@ -17,9 +17,41 @@
                     <view key="view" contentMode="scaleToFill" id="ZPy-q4-Obg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MP4-Nc-qF4">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qf1-Rd-vXF">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="2Lb-pK-CLg"/>
+                                    <constraint firstItem="qf1-Rd-vXF" firstAttribute="centerX" secondItem="MP4-Nc-qF4" secondAttribute="centerX" id="B6Q-Ep-QTm"/>
+                                    <constraint firstItem="qf1-Rd-vXF" firstAttribute="centerY" secondItem="MP4-Nc-qF4" secondAttribute="centerY" id="k4a-Ch-jeX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X5f-pC-K7d">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X5f-pC-K7d" firstAttribute="top" secondItem="MP4-Nc-qF4" secondAttribute="bottom" constant="5" id="FUS-2Y-ABD"/>
+                            <constraint firstItem="MP4-Nc-qF4" firstAttribute="leading" secondItem="ZPy-q4-Obg" secondAttribute="leading" id="Gca-6L-fMp"/>
+                            <constraint firstAttribute="trailing" secondItem="MP4-Nc-qF4" secondAttribute="trailing" id="PtA-cx-YIZ"/>
+                            <constraint firstAttribute="trailing" secondItem="X5f-pC-K7d" secondAttribute="trailing" id="RVm-9u-xqr"/>
+                            <constraint firstItem="MP4-Nc-qF4" firstAttribute="top" secondItem="hWb-FQ-FsV" secondAttribute="bottom" id="Ynv-8L-vjK"/>
+                            <constraint firstItem="zoG-zD-VgZ" firstAttribute="top" secondItem="X5f-pC-K7d" secondAttribute="bottom" id="qrc-Ak-Ogr"/>
+                            <constraint firstItem="X5f-pC-K7d" firstAttribute="leading" secondItem="ZPy-q4-Obg" secondAttribute="leading" id="tDv-vZ-sV5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zAr-KD-k3S"/>
+                    <connections>
+                        <outlet property="usersTimelineView" destination="X5f-pC-K7d" id="Urs-8D-rkD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cK2-TZ-G8m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

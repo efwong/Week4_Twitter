@@ -36,6 +36,7 @@ class HomeTimelineViewController: UIViewController, TweetsListingsDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // Callback to fetch home timeline tweets
     func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->()){
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> ()in
             success(tweets)

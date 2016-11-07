@@ -16,6 +16,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     var loginSuccess: (() -> ())? // login Success callback, just prints a statement and segues into TweetsView
     var loginFailure: ((Error) -> ())?
     
+    // get home timeline tweets
     func homeTimeLine(success:@escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
         
         get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
@@ -50,7 +51,24 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    
+    // Get User Tweets
+    func userTimeLine(userId: String, success:@escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+        
+        //let parameters: [String : AnyObject] = ["user_id": userId as AnyObject]
+        
+        get("1.1/statuses/user_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            if let dictionaries = response as? [NSDictionary]{
+                
+                let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+                
+                success(tweets)
+                
+            }
+            }, failure: { (task: URLSessionDataTask?, error:Error) in
+                failure(error)
+        })
+    }
     
     
     // get user info
