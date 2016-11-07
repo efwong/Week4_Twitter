@@ -12,6 +12,9 @@
 		5E2291261DCF083600AC11C5 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2291251DCF083600AC11C5 /* MenuViewController.swift */; };
 		5E2291281DCF094500AC11C5 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2291271DCF094500AC11C5 /* MenuItemTableViewCell.swift */; };
 		5E22912A1DCF0A2A00AC11C5 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2291291DCF0A2A00AC11C5 /* MenuItem.swift */; };
+		5E48AA171DD01A1800D215BB /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48AA161DD01A1800D215BB /* MentionsViewController.swift */; };
+		5E48AA191DD01A2400D215BB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48AA181DD01A2400D215BB /* ProfileViewController.swift */; };
+		5E48AA211DD01ABF00D215BB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E48AA1F1DD01ABF00D215BB /* Profile.storyboard */; };
 		5E7FA2271DC499A700F13649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FA2261DC499A700F13649 /* AppDelegate.swift */; };
 		5E7FA22C1DC499A700F13649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E7FA22A1DC499A700F13649 /* Main.storyboard */; };
 		5E7FA22E1DC499A700F13649 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7FA22D1DC499A700F13649 /* Assets.xcassets */; };
@@ -21,6 +24,10 @@
 		5ED23E8A1DC800C700F5BCCA /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED23E891DC800C700F5BCCA /* TweetTableViewCell.swift */; };
 		5ED23E8C1DC817A100F5BCCA /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED23E8B1DC817A100F5BCCA /* TweetViewController.swift */; };
 		5ED23E8F1DC833C500F5BCCA /* CreateTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED23E8E1DC833C500F5BCCA /* CreateTweetViewController.swift */; };
+		5EDB0C0A1DD01C7400295EA4 /* Mentions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB0C081DD01C7400295EA4 /* Mentions.storyboard */; };
+		5EDB0C0C1DD01F1800295EA4 /* Tweets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB0C0B1DD01F1800295EA4 /* Tweets.storyboard */; };
+		5EDB0C0E1DD0256D00295EA4 /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB0C0D1DD0256D00295EA4 /* HomeTimelineViewController.swift */; };
+		5EDB0C101DD0258C00295EA4 /* HomeTimeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB0C0F1DD0258C00295EA4 /* HomeTimeline.storyboard */; };
 		5EF6669C1DC5259A00AE5329 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF6669B1DC5259A00AE5329 /* User.swift */; };
 		5EF6669E1DC525B300AE5329 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF6669D1DC525B300AE5329 /* Tweet.swift */; };
 		5EF666A11DC5324C00AE5329 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF666A01DC5324C00AE5329 /* TwitterClient.swift */; };
@@ -33,6 +40,9 @@
 		5E2291251DCF083600AC11C5 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5E2291271DCF094500AC11C5 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		5E2291291DCF0A2A00AC11C5 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		5E48AA161DD01A1800D215BB /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
+		5E48AA181DD01A2400D215BB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		5E48AA201DD01ABF00D215BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		5E7FA2231DC499A700F13649 /* TwitterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7FA2261DC499A700F13649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E7FA22B1DC499A700F13649 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +55,10 @@
 		5ED23E8B1DC817A100F5BCCA /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
 		5ED23E8D1DC81DE200F5BCCA /* TwitterDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TwitterDemo.entitlements; sourceTree = "<group>"; };
 		5ED23E8E1DC833C500F5BCCA /* CreateTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTweetViewController.swift; sourceTree = "<group>"; };
+		5EDB0C091DD01C7400295EA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Mentions.storyboard; sourceTree = "<group>"; };
+		5EDB0C0B1DD01F1800295EA4 /* Tweets.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tweets.storyboard; sourceTree = "<group>"; };
+		5EDB0C0D1DD0256D00295EA4 /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
+		5EDB0C0F1DD0258C00295EA4 /* HomeTimeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTimeline.storyboard; sourceTree = "<group>"; };
 		5EF6669B1DC5259A00AE5329 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5EF6669D1DC525B300AE5329 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		5EF666A01DC5324C00AE5329 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
@@ -98,12 +112,24 @@
 				5EF6669A1DC5256200AE5329 /* Models */,
 				5EF666991DC5254400AE5329 /* View Controllers */,
 				5E7FA2261DC499A700F13649 /* AppDelegate.swift */,
-				5E7FA22A1DC499A700F13649 /* Main.storyboard */,
+				5EDB0C111DD0259600295EA4 /* storyboards */,
 				5E7FA22D1DC499A700F13649 /* Assets.xcassets */,
 				5E7FA22F1DC499A700F13649 /* LaunchScreen.storyboard */,
 				5E7FA2321DC499A700F13649 /* Info.plist */,
 			);
 			path = TwitterDemo;
+			sourceTree = "<group>";
+		};
+		5EDB0C111DD0259600295EA4 /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5E7FA22A1DC499A700F13649 /* Main.storyboard */,
+				5EDB0C0B1DD01F1800295EA4 /* Tweets.storyboard */,
+				5EDB0C0F1DD0258C00295EA4 /* HomeTimeline.storyboard */,
+				5E48AA1F1DD01ABF00D215BB /* Profile.storyboard */,
+				5EDB0C081DD01C7400295EA4 /* Mentions.storyboard */,
+			);
+			name = storyboards;
 			sourceTree = "<group>";
 		};
 		5EF666991DC5254400AE5329 /* View Controllers */ = {
@@ -115,6 +141,9 @@
 				5ED23E8E1DC833C500F5BCCA /* CreateTweetViewController.swift */,
 				5E2291231DCEFA8A00AC11C5 /* HamburgerViewController.swift */,
 				5E2291251DCF083600AC11C5 /* MenuViewController.swift */,
+				5E48AA161DD01A1800D215BB /* MentionsViewController.swift */,
+				5E48AA181DD01A2400D215BB /* ProfileViewController.swift */,
+				5EDB0C0D1DD0256D00295EA4 /* HomeTimelineViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -215,8 +244,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EDB0C0A1DD01C7400295EA4 /* Mentions.storyboard in Resources */,
 				5E7FA2311DC499A700F13649 /* LaunchScreen.storyboard in Resources */,
+				5EDB0C0C1DD01F1800295EA4 /* Tweets.storyboard in Resources */,
 				5E7FA22E1DC499A700F13649 /* Assets.xcassets in Resources */,
+				5EDB0C101DD0258C00295EA4 /* HomeTimeline.storyboard in Resources */,
+				5E48AA211DD01ABF00D215BB /* Profile.storyboard in Resources */,
 				5E7FA22C1DC499A700F13649 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,13 +313,16 @@
 				5EF6669E1DC525B300AE5329 /* Tweet.swift in Sources */,
 				5E7FA2391DC49B3700F13649 /* LoginViewController.swift in Sources */,
 				5EA7E0D91DC5CD3B00121188 /* TweetsViewController.swift in Sources */,
+				5EDB0C0E1DD0256D00295EA4 /* HomeTimelineViewController.swift in Sources */,
 				5E2291261DCF083600AC11C5 /* MenuViewController.swift in Sources */,
+				5E48AA171DD01A1800D215BB /* MentionsViewController.swift in Sources */,
 				5ED23E8F1DC833C500F5BCCA /* CreateTweetViewController.swift in Sources */,
 				5E22912A1DCF0A2A00AC11C5 /* MenuItem.swift in Sources */,
 				5ED23E8C1DC817A100F5BCCA /* TweetViewController.swift in Sources */,
 				5EF666A11DC5324C00AE5329 /* TwitterClient.swift in Sources */,
 				5E7FA2271DC499A700F13649 /* AppDelegate.swift in Sources */,
 				5E2291281DCF094500AC11C5 /* MenuItemTableViewCell.swift in Sources */,
+				5E48AA191DD01A2400D215BB /* ProfileViewController.swift in Sources */,
 				5E2291241DCEFA8A00AC11C5 /* HamburgerViewController.swift in Sources */,
 				5ED23E8A1DC800C700F5BCCA /* TweetTableViewCell.swift in Sources */,
 			);
@@ -295,6 +331,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5E48AA1F1DD01ABF00D215BB /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E48AA201DD01ABF00D215BB /* Base */,
+			);
+			name = Profile.storyboard;
+			sourceTree = "<group>";
+		};
 		5E7FA22A1DC499A700F13649 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -309,6 +353,14 @@
 				5E7FA2301DC499A700F13649 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5EDB0C081DD01C7400295EA4 /* Mentions.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5EDB0C091DD01C7400295EA4 /* Base */,
+			);
+			name = Mentions.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

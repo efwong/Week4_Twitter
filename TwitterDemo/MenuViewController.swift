@@ -29,12 +29,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.delegate = self
         // Do any additional setup after loading the view.
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeTimelineStoryboard = UIStoryboard(name: "HomeTimeline", bundle: nil)
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        let mentionsStoryboard = UIStoryboard(name: "Mentions", bundle: nil)
         
         
-        profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
-        timelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-        mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "MentionsNavigationController")
+        profileNavigationController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
+        timelineNavigationController = homeTimelineStoryboard.instantiateViewController(withIdentifier: "HomeTimelineNavigationController")
+        mentionsNavigationController = mentionsStoryboard.instantiateViewController(withIdentifier: "MentionsNavigationController")
         
         viewControllers.append(profileNavigationController)
         viewControllers.append(timelineNavigationController)
