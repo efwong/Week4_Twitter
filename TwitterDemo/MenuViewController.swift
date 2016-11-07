@@ -15,7 +15,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     let menuItemList = [MenuItem("Profile"), MenuItem("TimeLine"), MenuItem("Mentions")]
     
     var viewControllers: [UIViewController] = []
-    private var profileNavigationController: UIViewController!
+    private var profileNavigationController: UINavigationController!
     private var timelineNavigationController: UIViewController!
     private var mentionsNavigationController: UIViewController!
     
@@ -34,7 +34,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let mentionsStoryboard = UIStoryboard(name: "Mentions", bundle: nil)
         
         
-        profileNavigationController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
+        profileNavigationController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
+
+        let profileViewController = profileNavigationController.topViewController as? ProfileViewController
+        profileViewController?.user = User.currentUser
+//        let profileViewController = ((profileNavigationController.topViewController) as? ProfileViewController) {
+//            
+//        }
+        
         timelineNavigationController = homeTimelineStoryboard.instantiateViewController(withIdentifier: "HomeTimelineNavigationController")
         mentionsNavigationController = mentionsStoryboard.instantiateViewController(withIdentifier: "MentionsNavigationController")
         

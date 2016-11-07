@@ -52,11 +52,14 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     // Get User Tweets
-    func userTimeLine(userId: String, success:@escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+    func userTimeLine(userId: String? = nil, success:@escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
         
-        //let parameters: [String : AnyObject] = ["user_id": userId as AnyObject]
+        var parameters: [String : AnyObject] = [:]//"user_id": userId as AnyObject]
+        if userId != nil{
+            parameters["user_id"] = userId as AnyObject
+        }
         
-        get("1.1/statuses/user_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        get("1.1/statuses/user_timeline.json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             if let dictionaries = response as? [NSDictionary]{
                 
@@ -70,8 +73,30 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    // get user profile banner
+    func getUserProfileBanner(userIdString: String, success: @escaping (URL) -> (), failure: @escaping (Error) -> ()){
+        
+        let parameters = ["user_id": userIdString as AnyObject]
+        
+        get("1.1/users/profile_banner.json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            if let dictionary = response as? NSDictionary{
+                if let sizesDictionary = dictionary["sizes"] as? NSDictionary{
+                    if let mobileRetina = sizesDictionary["mobile_retina"] as? NSDictionary{
+                        if let url = mobileRetina["url"] as? String{
+                            success(URL(string: url)!)
+                        }
+                    }
+                }
+                
+            }
+            
+            }, failure: { (task: URLSessionDataTask?, error:Error) in
+                failure(error)
+                print("failed verification")
+        })
+    }
     
-    // get user info
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             

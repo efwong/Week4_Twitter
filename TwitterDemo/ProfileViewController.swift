@@ -12,6 +12,34 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
 
     @IBOutlet weak var usersTimelineView: UIView!
     
+    @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    
+    var user: User!{
+        didSet{
+            // load view
+            self.view.layoutIfNeeded()
+            
+            // attach text to view
+            self.nameLabel.text = user.name
+            self.screenNameLabel.text = "@\(user.screenName!)"
+            self.tweetsCountLabel.text = "\(user.tweetsCount)"
+            self.followingCountLabel.text = "\(user.followingCount)"
+            self.followersCountLabel.text = "\(user.followersCount)"
+            
+            // load image view
+            if let userImageUrl = user.profileURL{
+                self.userImageView.setImageWith(userImageUrl)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,9 +68,13 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
         self.addChildViewController(tweetsViewController)
         tweetsViewController.willMove(toParentViewController: self)
         self.view.layoutIfNeeded()
-        self.view.addSubview(tweetsViewController.view)
-        //self.usersTimelineView = tweetsViewController.view
+        //self.view.addSubview(tweetsViewController.view)
+        self.usersTimelineView.addSubview(tweetsViewController.view)
         tweetsViewController.didMove(toParentViewController: self)
+        
+        
+        // load User Profile Banner
+        loadProfileBanner()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,14 +85,24 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
     
     // callback to fetch user timeline tweets
     func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->()){
-        let userId = User.currentUser?.userIdStr
+        //let userId = User.currentUser?.userIdStr
         //userTimeLine(userId: userId!,
-        TwitterClient.sharedInstance?.userTimeLine(userId: userId!, success: { (tweets: [Tweet]) -> ()in
+        TwitterClient.sharedInstance?.userTimeLine(userId: nil, success: { (tweets: [Tweet]) -> ()in
             success(tweets)
             }, failure: { (error: Error) -> () in
                 print(error.localizedDescription)
                 failure(error)
         })
+    }
+    
+    func loadProfileBanner(){
+        if user != nil{
+            TwitterClient.sharedInstance?.getUserProfileBanner(userIdString: user.userIdStr, success: { (url: URL) in
+                    self.bannerImageView.setImageWith(url)
+                }, failure: { (error: Error) in
+                    print(error.localizedDescription)
+            })
+        }
     }
     
     /*
