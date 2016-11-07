@@ -8,8 +8,13 @@
 
 import UIKit
 
+@objc protocol TweetsListingsDelegate{
+    @objc func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->())
+}
+
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateTweetDelegate {
 
+    weak var tweetsListingsDelegate: TweetsListingsDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,7 +36,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.insertSubview(refreshControl, at: 0)
         
         // get tweets
-        getTweets(){}
+        getTweets(success: {}, always: {})
         // Do any additional setup after loading the view.
         
     }
@@ -61,21 +66,22 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Refresh lists of tweets
     func refreshControlAction(refreshControl: UIRefreshControl){
-        getTweets(){
-            () in
+        
+        self.getTweets(success: {}, always: {
             refreshControl.endRefreshing()
-        }
+        })
     }
     
     
     // get first 20 tweets
-    func getTweets(completion: @escaping () -> ()){
-        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> ()in
-            self.tweets = tweets
-            self.tableView.reloadData() // update table view data
-            completion()
-            }, failure: { (error: Error) -> () in
-                print(error.localizedDescription)
+    func getTweets(success: @escaping () -> (), always: @escaping () -> ()){
+        self.tweetsListingsDelegate?.getTweetsFunction(success: { (tweets: [Tweet]) in
+                self.tweets = tweets
+                self.tableView.reloadData()
+                success()
+                always()
+            }, failure: { (error: Error) in
+                always()
         })
     }
     
@@ -83,12 +89,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // fire when saving tweet
     func createTweet() {
         // reload tweets
-        getTweets(){}
+        self.getTweets(success: {}, always: {})
     }
     
     // Unwind segue to reload table view
     @IBAction func unwindToTweetsView(segue: UIStoryboardSegue){
-        getTweets(){}
+        self.getTweets(success: {}, always: {})
     }
     
     // MARK: - Navigation

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class HomeTimelineViewController: UIViewController {
+class HomeTimelineViewController: UIViewController, TweetsListingsDelegate {
 
-    private var tweetsViewController: UIViewController!
+    //private var tweetsViewController: TweetsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,9 @@ class HomeTimelineViewController: UIViewController {
         let tweetsStoryboard = UIStoryboard(name: "Tweets", bundle: nil)
         
         // add tweets view controller
-        tweetsViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "TweetsStoryboardViewController")
+        let tweetsViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "TweetsStoryboardViewController") as! TweetsViewController
+        tweetsViewController.tweetsListingsDelegate = self
+        //tweetsViewController.getTweetsFunction = self.getTweetsFunction
         
         // use this to connect tweetsViewController to current navigationController
         // allows it to hook into nav history and use correct segues
@@ -34,6 +36,15 @@ class HomeTimelineViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->()){
+        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> ()in
+            success(tweets)
+            }, failure: { (error: Error) -> () in
+                print(error.localizedDescription)
+                failure(error)
+        })
     }
     
 
