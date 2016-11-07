@@ -61,6 +61,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "com.TweetTableViewCell", for: indexPath) as! TweetTableViewCell
         cell.tweet = self.tweets[indexPath.row]
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTweetProfileImageTap(_:)))
+        cell.userImageView.addGestureRecognizer(tapGesture)
+        
         return cell
     }
     
@@ -97,6 +100,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.getTweets(success: {}, always: {})
     }
     
+    
+    // Triggered when tapping the profile image of a tweet
+    // segue into profile view for that user
+    func onTweetProfileImageTap(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: self.tableView)
+        if let indexPath = self.tableView.indexPathForRow(at: tapLocation){
+            let cell = self.tableView.cellForRow(at: indexPath)
+            performSegue(withIdentifier: "ToProfileView", sender: cell)
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -115,6 +129,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     createTweetModal.replyTweet = nil
                     createTweetModal.displayUser = User.currentUser
                 }
+            }
+        } else if segue.identifier == "ToProfileView"{
+            if let destinationVC = segue.destination as? ProfileViewController,
+                let cell = sender as? TweetTableViewCell{
+                destinationVC.user = cell.tweet.user
             }
         }
     }

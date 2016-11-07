@@ -39,6 +39,10 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
         }
     }
     
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        <#code#>
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,9 +89,9 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
     
     // callback to fetch user timeline tweets
     func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->()){
-        //let userId = User.currentUser?.userIdStr
+        let userId = user.userIdStr
         //userTimeLine(userId: userId!,
-        TwitterClient.sharedInstance?.userTimeLine(userId: nil, success: { (tweets: [Tweet]) -> ()in
+        TwitterClient.sharedInstance?.userTimeLine(userId: userId, success: { (tweets: [Tweet]) -> ()in
             success(tweets)
             }, failure: { (error: Error) -> () in
                 print(error.localizedDescription)

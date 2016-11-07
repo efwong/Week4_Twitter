@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uFi-gt-cYN">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -28,7 +28,8 @@
                                             <frame key="frameInset" width="375" height="176"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hM0-Cj-tRU">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hM0-Cj-tRU">
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="a0d-N9-3ce"/>
                                                         <constraint firstAttribute="height" constant="65" id="tdx-KM-HTS"/>
@@ -134,11 +135,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="LHC-Sy-UMI" id="Ov2-4D-wc9"/>
+                        <segue destination="0L6-IP-3iD" kind="show" identifier="ToProfileView" id="rCg-mK-NmM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLq-fT-J1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1717.5999999999999" y="135.38230884557723"/>
+            <point key="canvasLocation" x="1718" y="134"/>
         </scene>
         <!--Create Tweet View Controller-->
         <scene sceneID="E5y-Rj-N7v">
@@ -452,6 +454,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJm-Ye-iif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="918" y="135"/>
+        </scene>
+        <!--ProfileViewController-->
+        <scene sceneID="LgX-Kq-HiJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="0L6-IP-3iD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SnP-83-vhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2341" y="-388"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Cl-fd-e1D">

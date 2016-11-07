@@ -55,7 +55,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     func userTimeLine(userId: String? = nil, success:@escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
         
         var parameters: [String : AnyObject] = [:]//"user_id": userId as AnyObject]
-        if userId != nil{
+        if let userId = userId{
             parameters["user_id"] = userId as AnyObject
         }
         
