@@ -26,11 +26,9 @@ class HomeTimelineViewController: UIViewController, TweetsListingsDelegate {
         // use this to connect tweetsViewController to current navigationController
         // allows it to hook into nav history and use correct segues
         self.addChildViewController(tweetsViewController)
-        //tweetsViewController.navigationController = self.navigationController
         tweetsViewController.willMove(toParentViewController: self)
         self.view.addSubview(tweetsViewController.view)
         tweetsViewController.didMove(toParentViewController: self)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

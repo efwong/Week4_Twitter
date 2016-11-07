@@ -32,6 +32,27 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    
+    // Get Mentions Tweet
+    func mentionsTimeLine(success:@escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+        
+        get("1.1/statuses/mentions_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            if let dictionaries = response as? [NSDictionary]{
+                
+                let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+                
+                success(tweets)
+                
+            }
+            }, failure: { (task: URLSessionDataTask?, error:Error) in
+                failure(error)
+        })
+    }
+    
+    
+    
+    
     // get user info
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in

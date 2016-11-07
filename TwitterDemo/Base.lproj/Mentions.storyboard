@@ -9,7 +9,7 @@
         <!--Mentions View Controller-->
         <scene sceneID="EfT-Xn-D2D">
             <objects>
-                <viewController id="5lw-bm-LyN" customClass="MentionsViewController" customModule="TwitterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="5lw-bm-LyN" customClass="MentionsViewController" customModule="TwitterDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FGo-Xw-YO2"/>
                         <viewControllerLayoutGuide type="bottom" id="ec7-uZ-GFp"/>

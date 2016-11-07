@@ -8,12 +8,25 @@
 
 import UIKit
 
-class MentionsViewController: UIViewController {
+class MentionsViewController: UIViewController, TweetsListingsDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let tweetsStoryboard = UIStoryboard(name: "Tweets", bundle: nil)
+        
+        // add tweets view controller
+        let tweetsViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "TweetsStoryboardViewController") as! TweetsViewController
+        tweetsViewController.tweetsListingsDelegate = self
+        //tweetsViewController.getTweetsFunction = self.getTweetsFunction
+        
+        // use this to connect tweetsViewController to current navigationController
+        // allows it to hook into nav history and use correct segues
+        self.addChildViewController(tweetsViewController)
+        tweetsViewController.willMove(toParentViewController: self)
+        self.view.addSubview(tweetsViewController.view)
+        tweetsViewController.didMove(toParentViewController: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +34,16 @@ class MentionsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->()){
+        TwitterClient.sharedInstance?.mentionsTimeLine(success: { (tweets: [Tweet]) -> ()in
+            success(tweets)
+            }, failure: { (error: Error) -> () in
+                print(error.localizedDescription)
+                failure(error)
+        })
+    }
+    
     /*
     // MARK: - Navigation
 
