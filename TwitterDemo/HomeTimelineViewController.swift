@@ -46,7 +46,9 @@ class HomeTimelineViewController: UIViewController, TweetsListingsDelegate {
         })
     }
     
-
+    @IBAction func onLogoutButton(_ sender: AnyObject) {
+        TwitterClient.sharedInstance?.logout()
+    }
     /*
     // MARK: - Navigation
 

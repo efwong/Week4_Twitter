@@ -12,10 +12,14 @@ class MenuItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     
+    @IBOutlet weak var iconImageView: UIImageView!
+    
     var menuItem: MenuItem!{
         didSet{
-            
             name.text = (menuItem?.name) ?? ""
+            if let imageName = menuItem?.imageName{
+                iconImageView.image = UIImage(named: imageName)
+            }
         }
     }
     

@@ -31,17 +31,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // go straight to tweets if not nil (skip login & authentication with Twitter)
         if User.currentUser != nil{
-            print("There is a current user")
-            
             // set root view controller
+            print("There is a current user")
+            // But update current user object to get latest data
+            TwitterClient.sharedInstance?.currentAccount(success: { (user: User) in
+                User.currentUser = user
+                }, failure: { (error: Error) in
+                    print(error.localizedDescription)
+            })
+            
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil) // from Main.storyboard
             let hamburgerViewController = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
-            //let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            self.window?.rootViewController = hamburgerViewController
             
-            // point menu and hamburger view controllers to each other
-            //menuViewController.hamburgerViewController = hamburgerViewController
-            //hamburgerViewController.menuViewController = menuViewController
-            window?.rootViewController = hamburgerViewController
+            
         }else{
             // proceed to login view
             print("There is no current user")

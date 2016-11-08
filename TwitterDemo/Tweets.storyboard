@@ -122,11 +122,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t4A-4k-Jpc">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="XEs-6P-ggW">
-                            <connections>
-                                <action selector="onLogoutButton:" destination="RJ0-dt-5QY" id="kox-G0-qDp"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="XEs-6P-ggW"/>
                         <barButtonItem key="rightBarButtonItem" title="New" id="QG1-sc-crJ">
                             <connections>
                                 <segue destination="pBc-dx-KBx" kind="presentation" identifier="ToCreateTweet" id="nyH-zG-IZ9"/>

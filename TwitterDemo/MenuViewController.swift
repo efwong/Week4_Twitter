@@ -12,7 +12,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var tableView: UITableView!
     
-    let menuItemList = [MenuItem("Profile"), MenuItem("TimeLine"), MenuItem("Mentions")]
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    let menuItemList = [MenuItem("Profile", "profile"), MenuItem("TimeLine", "timeline"), MenuItem("Mentions", "mentions")]
     
     var viewControllers: [UIViewController] = []
     private var profileNavigationController: UINavigationController!
@@ -27,7 +31,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        // Do any additional setup after loading the view.
+        //self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = 75
+        self.tableView.tableFooterView = UIView()
+        
+        // load profile Image and label
+        if let user = User.currentUser{
+            self.profileImageView.setImageWith(user.profileURL!)
+            self.nameLabel.text = user.name
+        }
         
         let homeTimelineStoryboard = UIStoryboard(name: "HomeTimeline", bundle: nil)
         let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
@@ -70,7 +82,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
 

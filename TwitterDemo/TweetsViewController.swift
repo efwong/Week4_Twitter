@@ -28,6 +28,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
+        self.tableView.tableFooterView = UIView()
         
         
         // Initialize UIRefreshControl

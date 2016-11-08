@@ -19,7 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OFl-1n-a1S"/>
+                    <navigationItem key="navigationItem" id="OFl-1n-a1S">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="sca-cJ-7wB">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="5lw-bm-LyN" id="T7x-VD-dIp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUK-7j-o0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

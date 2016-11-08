@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, TweetsListingsDelegate {
-
-    @IBOutlet weak var usersTimelineView: UIView!
+class ProfileViewController: UIViewController, TweetsListingsDelegate{
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var bannerImageView: UIImageView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,6 +18,7 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
     @IBOutlet weak var tweetsCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
+    
     
     var user: User!{
         didSet{
@@ -39,16 +39,11 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
         }
     }
     
-//    
-//    override func viewWillAppear(_ animated: Bool) {
-//        <#code#>
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let tweetsStoryboard = UIStoryboard(name: "Tweets", bundle: nil)
+       // let tweetsStoryboard = UIStoryboard(name: "Tweets", bundle: nil)
         /*
         
         let testViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "Test123")
@@ -64,21 +59,22 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
         
         
         // add tweets view controller
-        let tweetsViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "TweetsStoryboardViewController") as! TweetsViewController
-        tweetsViewController.tweetsListingsDelegate = self
+        //tweetsViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "TweetsStoryboardViewController") as! TweetsViewController
+        //tweetsViewController.tweetsListingsDelegate = self
         
         // use this to connect tweetsViewController to current navigationController
         // allows it to hook into nav history and use correct segues
-        self.addChildViewController(tweetsViewController)
-        tweetsViewController.willMove(toParentViewController: self)
-        self.view.layoutIfNeeded()
+        //self.addChildViewController(tweetsViewController)
+        //tweetsViewController.willMove(toParentViewController: self)
+        //self.view.layoutIfNeeded()
         //self.view.addSubview(tweetsViewController.view)
-        self.usersTimelineView.addSubview(tweetsViewController.view)
-        tweetsViewController.didMove(toParentViewController: self)
-        
+        //self.usersTimelineView.addSubview(tweetsViewController.view)
+        //tweetsViewController.didMove(toParentViewController: self)
         
         // load User Profile Banner
         loadProfileBanner()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,14 +105,18 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate {
         }
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowTweetsViewController"{
+            if let destinationVC = segue.destination as? TweetsViewController{
+                destinationVC.tweetsListingsDelegate = self
+            }
+        }
     }
-    */
 
+    @IBAction func onLogoutButton(_ sender: AnyObject) {
+        TwitterClient.sharedInstance?.logout()
+    }
 }

@@ -87,6 +87,9 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
             TwitterClient.sharedInstance?.retweet(idStr: idStr, success: {
                 () in
                 self.toggleRetweetedIcon(false)
+                if let retweetCount = self.tweet?.retweetCount{
+                    self.retweetLabel.text = "\(retweetCount + 1)"
+                }
                 
                 }, failure: {
                     (error: Error) in
@@ -104,6 +107,11 @@ class TweetViewController: UIViewController, CreateTweetDelegate {
             TwitterClient.sharedInstance?.favorite(idStr: idStr, success: {
                 () in
                 self.toggleFavoriteIcon(false)
+                
+                if let favCount = self.tweet?.favoriteCount{
+                    self.favoritesLabel.text = "\(favCount + 1)"
+                }
+                
                 }, failure: {
                     (error: Error) in
                     print("\(error.localizedDescription)")
