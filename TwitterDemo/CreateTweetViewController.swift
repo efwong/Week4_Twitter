@@ -75,7 +75,7 @@ class CreateTweetViewController: UIViewController {
     // load user UI
     func loadUserDisplay(){
         self.nameLabel.text = self.displayUser?.name
-        self.screenNameLabel.text = self.displayUser?.screenName
+        self.screenNameLabel.text = "@\((self.displayUser?.screenName) ?? "" )"
         
         if let imageURL = self.displayUser?.profileURL{
             self.userImageView.setImageWith(imageURL)
@@ -86,7 +86,7 @@ class CreateTweetViewController: UIViewController {
         if self.replyTweet != nil{
             self.replyView.isHidden = false
             self.replyTweetName.text = self.replyTweet?.user?.name
-            self.replyTweetScreenName.text = self.replyTweet?.user?.screenName
+            self.replyTweetScreenName.text = "@\((self.replyTweet?.user?.screenName) ?? "" )"
             self.replyTweetDescription.text = self.replyTweet?.text
             
             if let imageURL = self.replyTweet?.user?.profileURL{

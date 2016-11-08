@@ -25,12 +25,24 @@
                                 <action selector="onLogoutButton:" destination="lku-dJ-YwA" id="2sz-cQ-Fde"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="203-q6-9GU"/>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="203-q6-9GU">
+                            <connections>
+                                <segue destination="0hs-K0-zcT" kind="show" identifier="ToCreateTweet" id="r89-NU-CIc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jrb-jL-Scu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1108" y="115.59220389805098"/>
+        </scene>
+        <!--CreateTweet-->
+        <scene sceneID="FPE-IJ-Nq6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateTweet" id="0hs-K0-zcT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wkp-8F-Cld" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1170" y="549"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aZk-sg-xKX">

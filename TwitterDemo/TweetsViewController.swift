@@ -12,7 +12,7 @@ import UIKit
     @objc func getTweetsFunction(success: @escaping ([Tweet]) -> (), failure: @escaping (Error)->())
 }
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateTweetDelegate {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     weak var tweetsListingsDelegate: TweetsListingsDelegate?
     
@@ -37,7 +37,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.insertSubview(refreshControl, at: 0)
         
         // get tweets
-        getTweets(success: {}, always: {})
+        reloadDataAndTable()
         // Do any additional setup after loading the view.
         
     }
@@ -89,17 +89,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
-    // MARK: CreateTweetDelegate
-    // fire when saving tweet
-    func createTweet() {
-        // reload tweets
+    // Reload data and update table with new tweets
+    func reloadDataAndTable(){
         self.getTweets(success: {}, always: {})
     }
     
     // Unwind segue to reload table view
-    @IBAction func unwindToTweetsView(segue: UIStoryboardSegue){
-        self.getTweets(success: {}, always: {})
-    }
+//    @IBAction func unwindToTweetsView(segue: UIStoryboardSegue){
+//        reloadDataAndTable()
+//    }
     
     
     // Triggered when tapping the profile image of a tweet
@@ -123,18 +121,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let cell = sender as? TweetTableViewCell{
                 destinationVC.tweet = cell.tweet
             }
-        } else if segue.identifier == "ToCreateTweet" {
-            if let navigationCtrl = segue.destination as? UINavigationController{
-                if let createTweetModal = navigationCtrl.topViewController as? CreateTweetViewController{
-                    createTweetModal.delegate = self
-                    createTweetModal.replyTweet = nil
-                    createTweetModal.displayUser = User.currentUser
-                }
-            }
-        } else if segue.identifier == "ToProfileView"{
+        }
+        else if segue.identifier == "ToProfileView"{
             if let destinationVC = segue.destination as? ProfileViewController,
                 let cell = sender as? TweetTableViewCell{
                 destinationVC.user = cell.tweet.user
+                destinationVC.IsFromExternalViewController = true
             }
         }
     }

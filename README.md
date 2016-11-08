@@ -1,29 +1,34 @@
-# Project 3 - TwitterDemo
 
-TwitterDemo is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
+# Project 4 - *Twitter*
 
-Time spent: 12 hours spent in total
+Time spent: **18** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [x] User can sign in using OAuth login flow.
-- [x] User can view last 20 tweets from their home timeline.
-- [x] The current signed in user will be persisted across restarts.
-- [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.  In other words, design the custom cell with the proper Auto Layout settings.  You will also need to augment the model classes.
-- [x] User can pull to refresh.
-- [x] User can compose a new tweet by tapping on a compose button.
-- [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [x] Hamburger menu
+   - [x] Dragging anywhere in the view should reveal the menu.
+   - [x] The menu should include links to your profile, the home timeline, and the mentions view.
+   - [x] The menu can look similar to the example or feel free to take liberty with the UI.
+- [x] Profile page
+   - [x] Contains the user header view
+   - [x] Contains a section with the users basic stats: # tweets, # following, # followers
+- [x] Home Timeline
+   - [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
-- [ ] When composing, you should have a countdown in the upper right for the tweet limit.
-- [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [ ] Retweeting and favoriting should increment the retweet and favorite count.
-- [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
-- [ ] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [ ] Profile Page
+   - [ ] Implement the paging view for the user description.
+   - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+   - [ ] Pulling down the profile page should blur and resize the header image.
+- [ ] Account switching
+   - [ ] Long press on tab bar to bring up Account view with animation
+   - [ ] Tap account to switch to
+   - [ ] Include a plus button to Add an Account
+   - [ ] Swipe to delete an account
+
 
 The following **additional** features are implemented:
 
@@ -31,26 +36,23 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. unwind segues with back buttons
-2. Implement a view for the nested behavior of reply tweets.
+  1. I've ran into an issue for the profile view, where I'd like the scroll to scroll both the table view and the profile header. In the real twitter app, when you scroll, the header shrinks back into the top layout, then if you keep scrolling, the table view would then scroll.
+  2. Is there a better way of creating subviews? I've noticed that there is a prebuilt container view object that you can insert into the storyboard.  Is there a difference between the method in Tim's video vs using the swift container view?
+
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-I'm going to add the gif later because I made to many requests to Twitter and they're currently blocking my requests.
+[TwitterGif](http://i.imgur.com/I4c5lEe.gifv)
 
-
-[TwitterGif](http://i.imgur.com/z47FALl.gif)
-
-![Video Walkthrough](twitter.gif)
+![Video Walkthrough](twitter_week4.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
-I had troubles making post connections.  Turns out I needed to enable it on the twitch website.
 
 ## License
 

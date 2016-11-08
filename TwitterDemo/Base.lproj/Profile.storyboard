@@ -170,13 +170,7 @@
                             <constraint firstItem="AmB-aF-a3x" firstAttribute="leading" secondItem="ZPy-q4-Obg" secondAttribute="leading" id="rzb-hG-YRH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zAr-KD-k3S">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="jX3-JH-iOA">
-                            <connections>
-                                <action selector="onLogoutButton:" destination="Bzy-kO-XBB" id="Bci-Nx-IPb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="zAr-KD-k3S"/>
                     <connections>
                         <outlet property="bannerImageView" destination="ioG-Jl-Oig" id="oXI-P4-DJW"/>
                         <outlet property="followersCountLabel" destination="FIy-VZ-g7s" id="2oY-hI-d2Q"/>

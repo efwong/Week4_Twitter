@@ -39,37 +39,21 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate{
         }
     }
     
+    var IsFromExternalViewController:Bool = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !IsFromExternalViewController{
+            // add bar button item
+            let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onLogoutButton))
+            self.navigationItem.leftBarButtonItem = logoutButton
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-       // let tweetsStoryboard = UIStoryboard(name: "Tweets", bundle: nil)
-        /*
-        
-        let testViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "Test123")
-        
-        self.addChildViewController(testViewController)
-        testViewController.willMove(toParentViewController: self)
-        // forces views to load
-        self.view.layoutIfNeeded()
-        //self.view.layoutSubviews()
-        self.usersTimelineView.addSubview(testViewController.view)
-        //self.view.addSubview(testViewController.view)
-        testViewController.didMove(toParentViewController: self)*/
-        
-        
-        // add tweets view controller
-        //tweetsViewController = tweetsStoryboard.instantiateViewController(withIdentifier: "TweetsStoryboardViewController") as! TweetsViewController
-        //tweetsViewController.tweetsListingsDelegate = self
-        
-        // use this to connect tweetsViewController to current navigationController
-        // allows it to hook into nav history and use correct segues
-        //self.addChildViewController(tweetsViewController)
-        //tweetsViewController.willMove(toParentViewController: self)
-        //self.view.layoutIfNeeded()
-        //self.view.addSubview(tweetsViewController.view)
-        //self.usersTimelineView.addSubview(tweetsViewController.view)
-        //tweetsViewController.didMove(toParentViewController: self)
+        self.title = "Profile"
         
         // load User Profile Banner
         loadProfileBanner()
@@ -116,7 +100,7 @@ class ProfileViewController: UIViewController, TweetsListingsDelegate{
         }
     }
 
-    @IBAction func onLogoutButton(_ sender: AnyObject) {
+    func onLogoutButton(_ sender: AnyObject) {
         TwitterClient.sharedInstance?.logout()
     }
 }

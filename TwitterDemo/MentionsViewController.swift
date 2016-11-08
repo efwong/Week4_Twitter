@@ -13,6 +13,8 @@ class MentionsViewController: UIViewController, TweetsListingsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Mentions"
+        
         // Do any additional setup after loading the view.
         let tweetsStoryboard = UIStoryboard(name: "Tweets", bundle: nil)
         
