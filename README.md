@@ -54,6 +54,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+I've noticed that the Timeline view from the previous week would actually be reused in all the views (Profile, Home Timeline, and Mentions).  I refactored it into a reusuable view controller by extracting it into it's own storyboard. I created a delegate that allows the parent view controller to designate which kind of tweets to put into the now "Tweet Listing View".  Then all I had to do was attach it to the parent viewcontroller as a child view controller, connect the view, and implement the protocol.  Now I could reuse the same view controller without recoding it multiple times.
+
+I've encountered an issue with using Tim's example of a Container View when there are multiple views within the same screen.  His example worked fine for 1 view for that 1 screen.  My table view in the child view controller for the Profile Screen would not scroll all the way and show the last remaining tweets.  When I switched over to using the pre-built Swift "Container View", this fixed the issue.
+
 ## License
 
     Copyright [2016] [Edwin Wong]
